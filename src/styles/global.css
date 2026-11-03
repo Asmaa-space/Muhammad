@@ -1,0 +1,209 @@
+:root {
+  --ivory: #F5F3EE;
+  --white: #FFFFFF;
+  --charcoal: #171717;
+  --gray: #858585;
+  --deep-green: #164A40;
+  
+  --bg-color: var(--ivory);
+  --text-color: var(--charcoal);
+  --accent: var(--deep-green);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+html[dir="ltr"] {
+  font-family: 'Inter', sans-serif;
+}
+
+html[dir="rtl"] {
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Typography */
+h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 600; line-height: 1.1; }
+h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; }
+p { font-size: 1.1rem; line-height: 1.6; color: var(--gray); }
+
+/* Layout */
+.main-content {
+  padding-top: 80px;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* Navigation */
+.nav-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background: rgba(245, 243, 238, 0.9);
+  backdrop-filter: blur(10px);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-links a {
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+.lang-btn {
+  background: none;
+  border: 1px solid var(--charcoal);
+  padding: 4px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+  background: var(--charcoal);
+  color: var(--white);
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-block;
+  padding: 12px 32px;
+  background: var(--charcoal);
+  color: var(--white);
+  border-radius: 40px;
+  font-weight: 600;
+  transition: background 0.3s;
+  border: none;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+
+.btn-primary:hover {
+  background: var(--accent);
+}
+
+/* Doors Setup (Work Page) */
+.doors-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 4rem;
+}
+.door-container {
+  width: 260px;
+  height: 400px;
+  perspective: 1500px;
+  position: relative;
+}
+.door-frame {
+  position: absolute;
+  inset: 0;
+  background: var(--white);
+  border: 2px solid #ddd;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+.door-3d {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform-origin: left;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--charcoal);
+  color: var(--white);
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.1);
+  backface-visibility: hidden;
+  z-index: 2;
+}
+html[dir="rtl"] .door-3d { transform-origin: right; }
+.door-container:hover .door-3d { transform: rotateY(-110deg); }
+html[dir="rtl"] .door-container:hover .door-3d { transform: rotateY(110deg); }
+
+/* 3D Ability Card (About Page) */
+.ability-card-wrapper {
+  perspective: 1000px;
+  width: 350px;
+  height: 450px;
+  margin: 4rem auto;
+}
+.ability-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+.ability-card.is-flipped {
+  transform: rotateY(180deg);
+}
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.card-front {
+  background: var(--white);
+  border: 1px solid #eaeaea;
+}
+.card-back {
+  background: var(--deep-green);
+  color: var(--white);
+  transform: rotateY(180deg);
+}
